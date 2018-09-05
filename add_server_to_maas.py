@@ -17,16 +17,16 @@ def csv_to_var(file):
 
 def print_cmd(var):
     print('maas sysops machines create',
-        'hostname=' + var['hostname'],
-        'domain=' + var['domain'],
-        'mac_addresses=' + var['mac_addr'],
+        'hostname=%s' % var['hostname'],
+        'domain=%s' % var['domain'],
+        'mac_addresses=%s' % var['mac_addr'],
         'architecture=amd64',
         'power_type=ipmi',
         'power_parameters_power_driver=LAN_2_0',
         'power_parameters_power_user=USER',
         'power_parameters_power_pass=PASSWORD',
-        'power_parameters_mac_address=' + var['power_mac_addr'],
-        'power_parameters_power_address=' + var['power_ip_addr'])
+        'power_parameters_mac_address=%s' % var['power_mac_addr'],
+        'power_parameters_power_address=%s' % var['power_ip_addr'])
 
 # get filename to import
 csvfile=get_args()
@@ -34,5 +34,4 @@ csvfile=get_args()
 hosts=csv_to_var(csvfile)
 # print commands to run
 for host in hosts:
-    for hostvar in hosts:
-        print_cmd(hostvar)
+    print_cmd(host)
